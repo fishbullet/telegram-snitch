@@ -6,11 +6,20 @@ module TelegramSnitch
   class Listner < Sinatra::Base
     post '/listen' do
       json = MultiJson.load(request.body.read, symbolize_keys: true)
-      Base.logger.info("Receive request from: #{request.host}")
 
       Base.logger.info("Listner -- receive: #{json}")
+      payload = {}
+      payload[:message] = if json && json[:payload]
+			    "CircleCI notice about build: ##{json[:payload][:build_num]} status: #{json[:payload][:status]}"
+			  elsif json && json[:repository]
+			    "Github notice #{json[:repository][:name]} updated by #{json[:sender][:login]}"
+			  else
+			    nil
+			  end
 
-      Base.redis.publish("activity", json[:message])
+      if payload[:message]
+	Base.redis.publish("activity", payload[:message])
+      end
       204
     end
   end
