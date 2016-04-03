@@ -13,6 +13,8 @@ module TelegramSnitch
 			    "CircleCI notice about build: ##{json[:payload][:build_num]} status: #{json[:payload][:status]}"
 			  elsif json && json[:repository]
 			    "Github notice #{json[:repository][:name]} updated by #{json[:sender][:login]}"
+			  elsif json && json[:object]
+			    "Custom notification received: #{json[:object][:message]}"
 			  else
 			    nil
 			  end

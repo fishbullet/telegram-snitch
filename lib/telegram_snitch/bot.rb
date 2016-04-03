@@ -6,7 +6,8 @@ module TelegramSnitch
       HELP = <<HELP
 Snitch bot for notifications.
 Available commands:
-  /start - Start 
+  /start - Start listen notifications
+  /stop - Stop listen notifications
   /help  - Show hint
 Support: shindu666@gmail.com
 HELP
@@ -20,11 +21,9 @@ HELP
 	      bot.api.sendMessage(chat_id: chat_id, text: HELP, disable_web_page_preview: true)
 	    when %r{^\/start}
 	      redis.set "channel:activity", chat_id
-
 	      bot.api.sendMessage(chat_id: chat_id, text: "Hello! I snitch and I'm ready to track your notifications.")
 	    when %r{^\/stop}
 	      redis.set "channel:activity", nil
-	      
 	      bot.api.sendMessage(chat_id: chat_id, text: "I snitch and I'm stop track your notifications.")
 	    else
 	      bot.api.sendMessage(chat_id: chat_id, text: "Command `#{m.text}` not found.")

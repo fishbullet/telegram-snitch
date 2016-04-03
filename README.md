@@ -2,6 +2,8 @@
 
 Setup the `BOT_TOKEN` in the `.env` file.
 
+Based on: [TelegramBotRuby](https://github.com/atipugin/telegram-bot-ruby)
+
 ## Installation
 
 Execute:
