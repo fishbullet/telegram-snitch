@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = %q{Little snitch for telegram}
   spec.description   = %q{Simple telegram notification bot}
-  spec.homepage      = "https://github.com/fishbullet/telegram_snitch"
+  spec.homepage      = "https://github.com/fishbullet/telegram-snitch"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org by setting 'allowed_push_host', or
